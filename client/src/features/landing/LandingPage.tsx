@@ -1,35 +1,39 @@
 import GoogleLogin from "@/components/GoogleLogin";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ModeToggle } from "@/components/ModeToggle";
 
 export default function LandingPage() {
   return (
-    <>
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <div className="flex items-center gap-3">
-          <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
-            <span className="text-primary font-bold">E</span>
+    <div className="min-h-screen">
+      {/* Header */}
+      <header className="sticky top-0 z-50 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+              <span className="text-xl font-bold">Engin</span>
+            <div className="flex items-center">
+              <ModeToggle />
+            </div>
           </div>
-          <span className="text-xl font-semibold">Engin</span>
         </div>
-        <ThemeToggle />
-      </div>
-    </header>
-    <div className="flex-1 flex items-center justify-center py-20">
-      <div className="mx-auto max-w-6xl px-6 text-center">
-        <div className="max-w-2xl mx-auto">
-          <h1 className="text-5xl font-bold mb-6">
-            Build with{" "}
-            <span className="text-primary">founders</span>
-          </h1>
-          <p className="text-xl text-muted-foreground mb-8">
-            Connect with startup founders, validate your ideas, and ship products that matter.
-          </p>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-1 flex items-center justify-center min-h-[calc(100vh-4rem)]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-2xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+              Build with{" "}
+              <span className="text-primary">founders</span>
+            </h1>
+            <p className="text-lg sm:text-xl lg:text-2xl text-base-content/70 mb-8">
+              Connect with startup founders, validate your ideas, and ship products that matter.
+            </p>
+            <div className="flex justify-center">
+              <GoogleLogin />
+            </div>
+          </div>
         </div>
-        <GoogleLogin />
-      </div>
+      </main>
     </div>
-    </>
   );
 }
 

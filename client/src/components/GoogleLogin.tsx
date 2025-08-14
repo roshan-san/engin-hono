@@ -15,7 +15,7 @@ export default function GoogleLogin() {
   return (
     <button
       onClick={handleGoogleLogin}
-      className="btn btn-outline btn-primary w-full"
+      className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md font-medium transition-colors flex items-center justify-center"
     >
       <FaGoogle className="w-5 h-5 mr-3" />
       <span>Continue with Google</span>
