@@ -1,5 +1,5 @@
 import GoogleLogin from "@/components/GoogleLogin";
-import { ModeToggle } from "@/components/ModeToggle";
+import {  ThemeToggle} from "@/components/ThemeToggle";
 
 export default function LandingPage() {
   return (
@@ -10,7 +10,7 @@ export default function LandingPage() {
           <div className="flex items-center justify-between h-16">
               <span className="text-xl font-bold">Engin</span>
             <div className="flex items-center">
-              <ModeToggle />
+              <ThemeToggle />
             </div>
           </div>
         </div>

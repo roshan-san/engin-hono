@@ -1,5 +1,6 @@
 import { authClient } from '../lib/auth-client'
-import { FaGoogle } from "react-icons/fa";
+import { Button } from './ui/button';
+import { FcGoogle } from 'react-icons/fc';
 
 export default function GoogleLogin() {
   const handleGoogleLogin = async () => {
@@ -13,12 +14,12 @@ export default function GoogleLogin() {
   }
 
   return (
-    <button
-      onClick={handleGoogleLogin}
-      className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md font-medium transition-colors flex items-center justify-center"
-    >
-      <FaGoogle className="w-5 h-5 mr-3" />
-      <span>Continue with Google</span>
-    </button>
+    <Button
+    className="bg-white border text-black rounded-full"
+    onClick={handleGoogleLogin}
+  >
+    <FcGoogle className="h-5 w-5" />
+    <span className="text-base">Sign in with Google</span>
+  </Button>
   )
 }

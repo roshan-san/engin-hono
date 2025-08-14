@@ -9,7 +9,7 @@ export const Route = createFileRoute("/_protected")({
 function ProtectedLayout() {
   return (
       <div className="flex min-h-screen flex-col w-full">
-        <div className="sticky top-0 z-50 bg-background border-b">
+        <div className="sticky top-0 z-50">
           <TopBar />
         </div>
         <main className="flex-1 w-full overflow-y-auto pb-20 md:pb-6">
