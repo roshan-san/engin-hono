@@ -1,5 +1,5 @@
-import { db, pool } from '../server/db/db';
-import * as schema from '../server/db/schema';
+import { db, pool } from '../server/lib/db/db';
+import * as schema from '../server/lib/db/schema';
 import { seed } from 'drizzle-seed';
 
 const seedDb = async () => {

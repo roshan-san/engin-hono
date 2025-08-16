@@ -1,5 +1,5 @@
 import { Context } from 'hono';
-import { updateProfile, updateProfileByUserId, getProfileById, getProfileByUserId, createProfile } from '../dal/profile.dal';
+import { updateProfile, updateProfileByUserId, getProfileById, getProfileByUserId, createProfile } from '../data-access-layer/profile.dal';
 import { UpdateProfileSchema } from './profile.schema';
 import { z } from 'zod';
 
