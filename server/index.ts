@@ -1,16 +1,14 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { auth } from './lib/auth';
-import { users, todos, startups } from './routes';
-
+import { profiles } from './routes/profile.routes';
+    
 const app = new OpenAPIHono().basePath('/api');
 
 // Auth routes
 app.on(['POST', 'GET'], '/auth/**', (c) => auth.handler(c.req.raw));
 
 // Mount route modules
-app.route('/users', users);
-app.route('/todos', todos);
-app.route('/startups', startups);
+app.route('/profile', profiles);
 
 // The OpenAPI documentation will be available at /doc
 app.doc('/doc', {
