@@ -7,6 +7,10 @@ import {
   text,
 } from 'drizzle-orm/pg-core';
 
+// Import table definitions
+export * from './tables/profiles';
+export * from './tables/startup';
+
 export const todos = pgTable('todos', {
   id: uuid().primaryKey().defaultRandom(),
   userId: text('user_id')

@@ -1,8 +1,18 @@
-import { useContext } from "react";
-import { UserContext } from "./UserContext";
+import { useQuery } from '@tanstack/react-query';
+import { authClient } from '@/lib/auth-client';
 
-export const useUser = () => {
-  const ctx = useContext(UserContext);
-  if (!ctx) throw new Error("useUser must be used within a UserProvider");
-  return ctx;
-}; 
+const fetchUser = async () => {
+    const session = await authClient.getSession();
+    if (!session || 'error' in session) return null;
+    return session;
+};
+  
+export default function useUser() {
+      const { data: user, isLoading } = useQuery({
+        queryKey: ['user'],
+        queryFn: fetchUser,
+          staleTime: 1000 * 60 * 15, // Cache for 15 minutes
+    });
+
+      return { user, isLoading };
+}

@@ -1,12 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { useUser } from "@/features/authentication/useUser";
+import useUser from "@/features/authentication/useUser";
 import ProfileDropdown from "./ProfileDropdown";
 import { Search, Users, MessageCircle, Home } from "lucide-react";
 import NotificationsDrawer from "../make-connections/NotificationDrawer";
-import { ModeToggle } from "@/components/ModeToggle";
 
 export function TopBar() {
-  const { profile } = useUser();
+  const { user } = useUser();
   
   return (
     <header className="w-full flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-4 bg-background border-b">
@@ -66,8 +65,7 @@ export function TopBar() {
       {/* Right Side: Profile & Actions */}
       <div className="flex items-center gap-3 sm:gap-4">
         <NotificationsDrawer />
-        <ModeToggle/>
-        {profile.username && <ProfileDropdown profile={profile} />}
+          {user && <ProfileDropdown user={user} />}
       </div>
     </header>
   );
