@@ -1,24 +1,34 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { auth } from './lib/auth';
-import { profiles } from './routes/profile.routes';
-    
-const app = new OpenAPIHono().basePath('/api');
+import { Scalar } from '@scalar/hono-api-reference';
+import { HonoEnv } from './types';
+import { Context } from 'hono';    
+import { authMiddleware } from './middlewares/auth.middleware';
+const app = new OpenAPIHono<HonoEnv>()
 
-// Auth routes
 app.on(['POST', 'GET'], '/auth/**', (c) => auth.handler(c.req.raw));
 
-// Mount route modules
-app.route('/profile', profiles);
+app.basePath('/api')
+  .use(authMiddleware);
 
-// The OpenAPI documentation will be available at /doc
+
+
+app.get('/scalar', Scalar({ url: '/doc' }))
+app.get('/scalar', Scalar((c: Context<HonoEnv>) => {
+  return {
+    url: '/doc',
+    proxyUrl:'https://proxy.scalar.com',
+  }
+}))
 app.doc('/doc', {
   openapi: '3.0.0',
   info: {
     version: '1.0.0',
-    title: 'Engin Hono API',
-    description: 'API for the Engin Hono application',
+    title: 'My API',
   },
-});
+})
+
+
 
 export type AppType = typeof app;
 export default app;
