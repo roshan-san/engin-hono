@@ -10,5 +10,11 @@ export const getProfileById = async (id: string) => {
 };
 
 export const createProfile = async (profileData: z.infer<typeof CreateProfileSchema> , user_id: string) => {
-  await db.insert(profiles).values({...profileData, user_id}).returning();
+  try {
+    const profile = await db.insert(profiles).values({...profileData, user_id}).returning();
+    return profile[0] || null;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to create profile");
+  }
 };
