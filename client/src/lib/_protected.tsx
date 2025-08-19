@@ -15,7 +15,6 @@ function ProtectedLayout() {
         <main className="flex-1 w-full overflow-y-auto pb-20 md:pb-6">
           <Outlet />
         </main>
-        {/* BottomBar: only on mobile, fixed to bottom */}
         <div className="block md:hidden fixed bottom-0 left-0 w-full z-50 bg-background border-t">
           <BottomBar />
         </div>

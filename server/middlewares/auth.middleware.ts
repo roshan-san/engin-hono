@@ -1,15 +1,30 @@
-import { createMiddleware } from 'hono/factory';
-import { auth } from '../lib/auth';
-import { HonoEnv } from '../types';
+import { createMiddleware } from "hono/factory";
 
-export const authMiddleware = createMiddleware<HonoEnv>(async (c, next) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers });
+import { HTTPException } from "hono/http-exception";
+import type { HonoAppContext } from "../lib/auth.ts";
 
-  if (!session) {
-    return c.json({ error: 'Unauthorized' }, 401);
+export const withAuth = createMiddleware<HonoAppContext<"IsAuthenticated">>(
+  async (c, next) => {
+    const user = c.get("user");
+
+    if (!user) {
+      throw new HTTPException(401, { message: "Please login" });
+    }
+
+    await next();
+  }
+);
+
+export const withoutAuth = createMiddleware<
+  HonoAppContext<"IsNotAuthenticated">
+>(async (c, next) => {
+  const user = c.get("user");
+
+  if (user) {
+    throw new HTTPException(400, {
+      message: "Only non-authenticated users can access this route",
+    });
   }
 
-  c.set('user', session.user);
-  c.set('session', session.session);
-  return next();
+  await next();
 });

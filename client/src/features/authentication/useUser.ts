@@ -3,7 +3,6 @@ import { authClient } from '@/lib/auth-client';
 
 const fetchUser = async () => {
     const session = await authClient.getSession();
-    if (!session || 'error' in session) return null;
     return session;
 };
   

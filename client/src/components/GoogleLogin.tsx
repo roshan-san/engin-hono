@@ -1,13 +1,24 @@
 import { authClient } from '../lib/auth-client'
 import { Button } from './ui/button';
 import { FcGoogle } from 'react-icons/fc';
+import { useNavigate } from '@tanstack/react-router';
 
 export default function GoogleLogin() {
+  const navigate = useNavigate();
   const handleGoogleLogin = async () => {
     try {
-      await authClient.signIn.social({
-        provider: "google",
-      })
+      await authClient.signIn.social(
+        { 
+          provider: "google",
+          
+        },
+        {
+          onSuccess: () => {
+            navigate({ to: "/" });
+          },  
+         
+        }
+      );
     } catch (error) {
       console.error('Google login failed:', error)
     }
