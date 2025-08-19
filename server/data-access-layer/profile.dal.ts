@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
-import { db } from "../lib/db/db";
-import { profiles } from "../lib/db/schema";
+import { db } from "../db/db";
+import { profiles } from "../db/tables/profiles";
 import { z } from "zod";
 import { CreateProfileSchema } from "../routes/profile.schema";
 

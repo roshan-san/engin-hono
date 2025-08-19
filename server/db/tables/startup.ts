@@ -1,11 +1,4 @@
-import {
-  pgTable,
-  timestamp,
-  uuid,
-  text,
-  boolean,
-  pgEnum,
-} from 'drizzle-orm/pg-core';
+import { pgTable, timestamp, uuid, text, boolean, pgEnum } from 'drizzle-orm/pg-core';
 import { user } from '../schema';
 
 // Enums for startup fields based on industry standards

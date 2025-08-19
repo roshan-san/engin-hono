@@ -3,6 +3,7 @@ import {pgTable, text, timestamp, boolean} from 'drizzle-orm/pg-core';
 // Import table definitions
 export * from './tables/profiles';
 export * from './tables/startup';
+export * from './enums';
 
 export const user = pgTable('user', {
   id: text('id').primaryKey(),

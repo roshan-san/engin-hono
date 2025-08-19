@@ -1,11 +1,8 @@
 import { zValidator } from "@hono/zod-validator";
 import { CreateProfileSchema } from "./profile.schema";
-import { desc, eq } from "drizzle-orm";
 import { Hono } from "hono";
-import type { z } from "zod";
 import { type HonoAppContext } from "../lib/auth";
 import { withAuth } from "../middlewares/auth.middleware";
-import { profiles } from "../lib/db/schema";
 import { createProfile, getProfileById } from "../data-access-layer/profile.dal";
 
   export const profile = new Hono<HonoAppContext>()
